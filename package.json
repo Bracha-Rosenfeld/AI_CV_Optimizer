@@ -1,0 +1,30 @@
+{
+  "name": "ai_cv_optimizer",
+  "version": "1.0.0",
+  "description": "��#\u0000A\u0000I\u0000_\u0000C\u0000V\u0000_\u0000O\u0000p\u0000t\u0000i\u0000m\u0000i\u0000z\u0000e\u0000r\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bracha-Rosenfeld/AI_CV_Optimizer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bracha-Rosenfeld/AI_CV_Optimizer/issues"
+  },
+  "homepage": "https://github.com/Bracha-Rosenfeld/AI_CV_Optimizer#readme",
+  "dependencies": {
+    "@google/genai": "^1.29.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jspdf": "^3.0.3",
+    "multer": "^2.0.2",
+    "pdf-lib": "^1.17.1",
+    "pdfkit": "^0.17.2"
+  }
+}
