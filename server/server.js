@@ -37,6 +37,44 @@ const upload = multer({
 const ai = new GoogleGenAI({
     apiKey: process.env.GEMINI_API_KEY
 });
+// ----------------------------------------------------
+// Route: GET /api/download/:filename - download PDF with headers and optional deletion
+// ----------------------------------------------------
+app.get('/api/download/:filename', async (req, res) => {
+    const filename = req.params.filename;
+    const filePath = path.join(GENERATED_DIR, filename);
+
+    try {
+        await fs.access(filePath); // בודק אם הקובץ קיים
+
+        // הגדרת headers
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+
+        // שליחת הקובץ
+        const stream = fsSync.createReadStream(filePath);
+        stream.pipe(res);
+
+        // אופציונלי: מחיקת הקובץ אחרי הורדה
+        // stream.on('end', async () => {
+        //     try {
+        //         await fs.unlink(filePath);
+        //         console.log(`Deleted file: ${filename}`);
+        //     } catch (err) {
+        //         console.error('Error deleting file:', err);
+        //     }
+        // });
+
+        stream.on('error', (err) => {
+            console.error('Stream error:', err);
+            res.status(500).end();
+        });
+
+    } catch {
+        res.status(404).json({ error: "File not found." });
+    }
+});
+
 
 // ----------------------------------------------------
 // Route: POST /api/optimize - CV optimization
